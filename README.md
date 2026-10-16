@@ -2,7 +2,7 @@
 
 Drafts and scripts written during my Master 2 in Systems Biology (Sorbonne Université), from single-neuron modelling to machine-learning analyses of biomedical data.
 
-The core of the repository is a series of **TMEs** (*Travaux sur Machine Encadrés*, supervised lab sessions) used to learn machine learning step by step, followed by two larger projects that apply those methods to real datasets. All code is in Python (Jupyter notebooks), mostly with `scikit-learn`.
+The core of the repository is a series of **TMEs** (*Travaux sur Machine Encadrés*, supervised lab sessions) used to learn machine learning step by step, followed by larger projects that apply those methods to real datasets. Most code is in Python (Jupyter notebooks, mostly `scikit-learn`), plus one R/Bioconductor project on gene regulatory networks.
 
 ---
 
@@ -54,6 +54,19 @@ Identification of cell sub-populations from scRNA-seq data:
 
 ---
 
+## Gene regulatory networks (R) — `Script/projet_resys.R`
+
+Master regulator analysis of osteosarcoma metastasis using public transcriptomic data (GEO **GSE21257**):
+1. Data retrieval from GEO (`GEOquery`) and sample-level quality check
+2. Inference of a transcriptional regulatory network with `RTN` (mutual information, 1 000 permutations, 100 bootstraps, DPI filtering)
+3. Differential expression between metastatic and non-metastatic groups with `limma` (FDR correction)
+4. Master Regulator Analysis and two-tailed GSEA on regulons to find transcription factors driving the phenotype (e.g. IRF8, VAV1, VENTX)
+5. Network visualisation with `RedeR`
+
+Slow steps can be skipped by reloading saved `.RData` checkpoints (`use_checkpoints <- TRUE`; checkpoints not included).
+
+---
+
 ## Neuron modelling (tutorials)
 
 | File | Content |
@@ -66,4 +79,6 @@ Identification of cell sub-populations from scRNA-seq data:
 
 ## Main dependencies
 
-`numpy`, `pandas`, `matplotlib`, `seaborn`, `scikit-learn`, `scipy`, `statsmodels`, `umap-learn`, `scanpy`, `scprep`, `anndata`, `pyAgrum`, `graphviz`, `brian2`, `neuron`
+**Python:** `numpy`, `pandas`, `matplotlib`, `seaborn`, `scikit-learn`, `scipy`, `statsmodels`, `umap-learn`, `scanpy`, `scprep`, `anndata`, `pyAgrum`, `graphviz`, `brian2`, `neuron`
+
+**R / Bioconductor:** `Biobase`, `GEOquery`, `limma`, `RTN`, `snow`, `RedeR`
